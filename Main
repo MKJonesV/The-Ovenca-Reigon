@@ -1,5 +1,85 @@
-public class main{
-  public static void main(String[] args){
+import java.util.ArrayList;
+import java.util.Scanner;
+  
+public class Main {
+  public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    SearchPokedex(s);
+    s.nextLine();
+    ArrayList<Pokemon> team1 = makeTeam(s, "Player 1");
+    ArrayList<Pokemon> team2 = makeTeam(s, "Player 2");
+  }
+
+  public static void SearchPokedex(Scanner s){
+    String loopCond = "";
+    while(!loopCond.equals("n")){
+      if(loopCond.equals("s")){
+        singleSearch(s);  
+      }
+      if(loopCond.equals("c")){
+        multiSearch(s);   
+      }
+      System.out.println("To stop searching the pokedex, press 'n'. To search for pokemon by category, press 'c'. To search for specific pokemon, press 's'.");
+      loopCond = s.next();
+    }
+  }
+  
+  public static ArrayList<Pokemon> makeTeam(Scanner s, String player){
+    ArrayList<Pokemon> team = new ArrayList<Pokemon>();
+    String name = "";
+    String str = "";
+    while(!name.equals("x") && team.size() < 6){
+      System.out.println(player + ", Add pokemon to your team by entering the species name. To search the pokedex for pokemon, enter 'p'. If you are finished building your team, press 'x'");
+      name = s.nextLine();
+      if(name.equals("x")){
+        System.out.println(player+"'s team: "+str+"\n");
+        return team;
+      }
+      if(name.equals("p")){
+        SearchPokedex(s);
+      }else{
+        Pokemon pkm = new Pokemon(name);
+        team.add(pkm);
+        str += pkm.toString() + ", ";
+      }
+    }
+    System.out.println(player+"'s team: "+str+"\n");
+    return team;
+  }
+  
+  public static void singleSearch(Scanner s){
+    System.out.println("To search for specific Pokemon, enter either their species name or dex number. (type '#' before the dex number) ");
+    s.nextLine();
+    String pkmCond = s.nextLine();
+    Pokemon p1 = new Pokemon(pkmCond);
+    System.out.println("\n"+p1.dexEntry()+"\n");
+    System.out.println("If you would like further information on "+p1+", press y, otherwise, press any other key");
+    pkmCond = s.nextLine();
+    if(pkmCond.equals("y")){
+      p1.setMoves();
+      System.out.println("\nStats: "+p1.stats()+"\nMoves: "+p1.getMoves()+"\n");
+    }
+  }
+  public static void multiSearch(Scanner s){
+    System.out.println("To search for pokemon by type, press 't'. To search for pokemon by stats, press 's'.");
+    String searchCond = s.next();
+    if(searchCond.equals("t")){
+      System.out.println("Enter the pokemon type you would like to search for");
+      String typeCond = s.next();
+      Pokemon p2 = new Pokemon();
+      System.out.println(p2.typeSearch(typeCond));
+    }
+    if(searchCond.equals("s")){
+      System.out.println("To find pokemon that specialize in a certian stat, enter a stat category (HP, ATK, DEF, SP ATK, SP DEF, or SPD)");
+      s.nextLine();
+      String statCond = s.nextLine();
+      System.out.println("Enter the minimum "+statCond+" value you want");
+      int x = s.nextInt();
+      Pokemon p3 = new Pokemon();
+      System.out.println(p3.statSearch(statCond, x));
+    }
+  }
+  public static void choosePokemon(Pokemon a){
     
   }
 }
