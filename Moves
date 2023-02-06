@@ -1,1 +1,48 @@
-
+public class Moves{
+  
+  private String[][][] pkmMoves = {{{"Cut", "Body Slam", "Double Edge"}, {"Echoed Voice", "Hyper Voice", "Boomburst"}}, {{"Leafage, Petal Blizzard", "Leaf Blade"}, {"Leaf Tornado", "Energy Ball", "Mega Drain"}}, {{"Aqua Jet", "Waterfall", "Liquidation"}, {"Bubble Beam", "Surf", "Hydro Pump"}}, {{"Flame Charge", "Blaze Kick", "Flare Blitz"}, {"Fire Spin", "Flamethrower", "Fire Blast"}}, {{"Nuzzle", "Thunder Punch", "Wild Charge"}, {"Charge Beam", "Thunderbolt", "Thunder"}}, {{"Pounce", "Leech Life", "Megahorn"}, {"Infestation", "Silver Wind", "Bug Buzz"}}, {{"Karate Chop", "Drain Punch", "High Jump Kick"}, {"Vacuum Wave", "Aura Sphere", "Focus Blast"}}, {{"Heart Stamp", "Psycho Cut", "Zen Headbutt"}, {"Confusion", "Psyshock", "Psychic"}}, {{"Pursuit", "Night Slash", "Foul Play"}, {"Snarl", "Dark Pulse", "Firey Wrath"}}, {{"Rock Throw", "Rock Slide", "Stone Edge"}, {"Aincent Power", "Power Gem", "Meteor Beam"}}, {{"Bulldoze", "Drill Run", "Earthquake"}, {"Mud Shot", "Scorching Sands", "Earth Power"}}, {{"Metal Claw", "Iron Head", "Meteor Mash"}, {"Mirror Shot", "Flash Cannon", "Steel Beam"}}, {"Poison Tail", "Cross Poison", "Poison Jab"}, {"Acid", "Venoshock", "Sludge Wave"}}, {{"Peck", "Aerial Ace", "Brave Bird"}, {"Gust", "Air Slash", "Tempest Tornado"}}, {{"Astonish", "Shadow Claw", "Phantom Force"}, {"Night Shade", "Ominous Wind", "Shadow Ball"}}, {{"Ice Shard", "Ice Punch", "Icicle Crash"}, {"Powder Snow", "Ice Beam", "Blizzard"}}, {{"Draining Kiss", "Magic Touch", "Play Rough"}, {"Disarming Voice", "Dazzling Gleam", "Moonblast"}}, {{"Breaking Swipe", "Dragon Claw", "Dragon Rush"}, {"Twister", "Dragon Pulse", "Draco Meteor"}}, {{"Daze", "Shining Kick", "Light Slash"}, {"Flashbang", "Light Pulse". "Supernova"}}, {{"Feint", "Facade", "Giga Impact"}, {"Hidden Power", "Razor Wind", "Hyper Beam"}}};
+    
+  private String[] moveArray = new String[4];
+  private int[] movePowerArray = new int[4];
+  private Types[] moveTypeArrays = new Types[4];
+  
+  private int atk;
+  private int spAtk;
+  private int atkType;
+  private int atkLevel;
+  Types type;
+  
+  public Moves(int bst, int a, int s, Types t){
+    atk = a;
+    spAtk = s;
+    type = t;
+    if(atk > spAtk){
+      atkType = 0;
+    }else{
+      atkType = 1;
+    }
+    if(bst >= 500){
+      atkLevel = 2;
+    }else if(bst >= 375){
+      atkLevel = 1;
+    }else{
+      atkLevel = 0;
+    }  
+  }
+  
+  public void addMoves(){
+      moveTypeArrays[0] = new Types(type.getPrimaryType());
+      moveArray[0] = pkmMoves[type.getType1Val()][atkType][atkLevel];
+      if(type.getSecondaryType() != null){
+        moveArray[1] = pkmMoves[type.getType2Val()][atkType][atkLevel];
+      }
+      moveTypeArrays[0] = new Types(type.getSecondaryType())
+  }   
+  public String toString(){
+    String moves = "";
+    for(String s : moveArray){
+      moves += s + ", ";
+    }
+    return moves;
+  }
+}
