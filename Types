@@ -25,6 +25,12 @@ public class Types{
     }
   }
   
+  public Types(int pkmTypeIndex){
+    num1 = pkmTypeIndex;
+    type1 = types[pkmTypeIndex];
+    }
+  }
+  
   public String getPrimaryType(){
     return type1;
   }
