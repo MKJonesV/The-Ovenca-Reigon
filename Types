@@ -4,17 +4,19 @@ public class Types{
   private String type2;
   private int num1;
   private int num2;
+  private int rand = (int)(Math.random()*20);
   
   public String[] types = {"Normal", "Grass", "Fire", "Water", "Electric", "Bug", "Fighting", "Psychic", "Dark", "Rock", "Ground", "Steel", "Poison", "Flying", "Ghost", "Ice", "Fairy", "Dragon", "Light"};
   
-  public Types(String pkmType){
+  
+  public Types(String pkmType){ // Pokemon
     String comparator;
     if(pkmType.indexOf("/") > -1){
       type1 = pkmType.substring(0, pkmType.indexOf("/"));
       type2 = pkmType.substring(pkmType.indexOf("/")+1);
     } else {
       type1 = pkmType;
-      type2 = null;
+      type2 = "";
     }
     for(int i = 0; i < types.length; i++){
       comparator = types[i];
@@ -25,26 +27,29 @@ public class Types{
     }
   }
   
-  public Types(int pkmTypeIndex){
+  public Types(int pkmTypeIndex){ // Moves
     num1 = pkmTypeIndex;
     type1 = types[pkmTypeIndex];
-    }
+  }
+
+  public String getRandomType(){
+    return types[rand];
   }
   
-  public String getPrimaryType(){
+  public String getPrimaryType(){ 
     return type1;
   }
   public String getSecondaryType(){
-    if(type2 != null){      
+    if(type2 != ""){      
       return type2;
     }
-    return "No second type";
+    return "";
   }
   public int getType1Val(){
     return num1;
   }
   public int getType2Val(){
-    if(type2 != null){      
+    if(type2 != ""){      
       return num2;
     }
     return -1;
