@@ -48,14 +48,15 @@ public class Main {
   }
   
   public static void singleSearch(Scanner s){
-    System.out.println("To search for specific Pokemon, enter either their species name or dex number. (type '#' before the dex number) ");
+    System.out.println("To search for specific Pokemon, enter either their species name or dex number. (type '#' before the dex number). If you would like to see a random pokemon, enter 'Random'");
     s.nextLine();
     String pkmCond = s.nextLine();
+    if(pkmCond.equalsIgnoreCase("Random")){
+      pkmCond = "#" + (int)(Math.random()*125+1);
+    }
     Pokemon p1 = new Pokemon(pkmCond);
-    System.out.println("\n"+p1.dexEntry()+"\n");
-    System.out.println("If you would like further information on "+p1+", press y, otherwise, press any other key");
-    pkmCond = s.nextLine();
-    if(pkmCond.equals("y")){
+    System.out.print("\n"+p1.dexEntry());
+    if(p1.dexNumber() > 0){
       p1.setMoves();
       System.out.println("\nStats: "+p1.stats()+"\nMoves: "+p1.getMoves()+"\n");
     }
