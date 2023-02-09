@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
   
 public class Main {
   public static void main(String[] args) {
@@ -31,6 +30,7 @@ public class Main {
     while(!name.equals("x") && team.size() < 6){
       System.out.println(player + ", Add pokemon to your team by entering the species name. To search the pokedex for pokemon, enter 'p'. If you are finished building your team, press 'x'");
       name = s.nextLine();
+      str += name + ", ";
       if(name.equals("x")){
         System.out.println(player+"'s team: "+str+"\n");
         return team;
@@ -40,7 +40,6 @@ public class Main {
       }else{
         Pokemon pkm = new Pokemon(name);
         team.add(pkm);
-        str += pkm.toString() + ", ";
       }
     }
     System.out.println(player+"'s team: "+str+"\n");
