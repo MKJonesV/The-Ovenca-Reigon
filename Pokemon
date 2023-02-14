@@ -69,10 +69,6 @@ public class Pokemon{
     return m.toString(); 
   }
   
-  public void setMoves(){
-    m.addMoves();
-  }
-  
   public String typeSearch(String type){
     String t;
     for(int i = 1; i < pkmTypes.length-1; i++){
@@ -120,8 +116,14 @@ public class Pokemon{
   public String toString(){
     return pkm;
   }
+  public Types getType(){
+    return t;
+  }
   public int dexNumber(){
     return dexNum;
+  }
+  public void setMoves(){
+    m.addMoves();
   }
 }
 
