@@ -5,11 +5,11 @@ public class Moves{
   
   private String[] moveArray = new String[4];
   private int[] movePowerArray = new int[4];
-  private Types[] moveTypeArrays = new Types[4];
+  private Types[] moveTypeArray = new Types[4];
   
   private int[] stats;
   private int bst = 0;
-  private int atkType;
+  private int atkClass;
   private int atkLevel;
   Types type;
   
@@ -20,9 +20,9 @@ public class Moves{
       bst += s[i];
     }
     if(s[1] > s[3]){
-      atkType = 0;
+      atkClass = 0;
     }else{
-      atkType = 1;
+      atkClass = 1;
     }
     if(bst >= 500){
       atkLevel = 2;
@@ -34,42 +34,70 @@ public class Moves{
   }
   
   public void addMoves(){
-      moveTypeArrays[0] = new Types(type.getPrimaryType());
-      moveArray[0] = pkmMoves[type.getType1Val()][atkType][atkLevel];
-      movePowerArray[0] = pkmMovePower[type.getType1Val()][atkType][atkLevel];
+      moveTypeArray[0] = new Types(type.getPrimaryType());
+      moveArray[0] = pkmMoves[type.getType1Val()][atkClass][atkLevel];
+      movePowerArray[0] = pkmMovePower[type.getType1Val()][atkClass][atkLevel];
       // Move 1
       if(type.getSecondaryType() != ""){
-        moveTypeArrays[1] = new Types(type.getSecondaryType());
-        moveArray[1] = pkmMoves[type.getType2Val()][atkType][atkLevel];
-        movePowerArray[1] = pkmMovePower[type.getType2Val()][atkType][atkLevel];
+        moveTypeArray[1] = new Types(type.getSecondaryType());
+        moveArray[1] = pkmMoves[type.getType2Val()][atkClass][atkLevel];
+        movePowerArray[1] = pkmMovePower[type.getType2Val()][atkClass][atkLevel];
       }else{
-        moveTypeArrays[1] = new Types("Normal");
-        moveArray[1] = pkmMoves[pkmMoves.length-1][atkType][atkLevel];
+        moveTypeArray[1] = new Types("Normal");
+        moveArray[1] = pkmMoves[pkmMoves.length-1][atkClass][atkLevel];
       }
       // Move 2
       if(stats[1]+stats[3] > (bst/3)){
-        moveTypeArrays[2] = new Types(type.getRandomType());
-        moveArray[2] = pkmMoves[moveTypeArrays[2].getType1Val()][atkType][atkLevel/2];
-        movePowerArray[2] = pkmMovePower[moveTypeArrays[2].getType1Val()][atkType][atkLevel/2];
+        moveTypeArray[2] = new Types(type.getRandomType());
+        moveArray[2] = pkmMoves[moveTypeArray[2].getType1Val()][atkClass][atkLevel/2];
+        movePowerArray[2] = pkmMovePower[moveTypeArray[2].getType1Val()][atkClass][atkLevel/2];
       }else if(stats[2]+stats[4] > (bst/3)){
         if(type.getSecondaryType() != ""){
-          moveTypeArrays[2] = new Types(type.getSecondaryType());
+          moveTypeArray[2] = new Types(type.getSecondaryType());
           moveArray[2] = pkmMoves[type.getType2Val()][2][0];
           movePowerArray[2] = 0;
         }else{
-          moveTypeArrays[1] = new Types("Normal");
+          moveTypeArray[1] = new Types("Normal");
           moveArray[2] = "Detect";
         }
       }else{
-        moveTypeArrays[1] = new Types("Normal");
+        moveTypeArray[1] = new Types("Normal");
         moveArray[2] = "Protect";
+        movePowerArray[3] = 0;
       }
       // Move 3
-      moveTypeArrays[3] = new Types(type.getPrimaryType());
+      moveTypeArray[3] = new Types(type.getPrimaryType());
       moveArray[3] = pkmMoves[type.getType1Val()][2][0];
       movePowerArray[3] = 0;
       // Move 4
-  }   
+  }
+  public int damage(String m, Types p1, Types p2){
+    int d = 0;
+    int index = -1;
+    for(int i = 0; i < moveArray.length; i++){
+      if(moveArray[i].indexOf(m) != -1){
+        d = movePowerArray[i];
+        index = i;
+      }
+    }
+    // Sets damage based on move selected
+    if(atkClass == 0){
+      d *= (stats[1]*0.01);
+    }
+    if(atkClass == 1){
+      d *= (stats[3]*0.01);
+    }
+    // Increases damage based on attack class
+    if((d != 0) && (moveTypeArray[index].getPrimaryType().equals(p1.getPrimaryType()) || moveTypeArray[index].getSecondaryType().equals(p1.getSecondaryType()))){
+      d *= 2;
+    }
+    // Increases damage if move is STAB (Same Type Attack Bonus)
+    d *= moveTypeArray[index].effectivity(p2);
+    // Calculates effectivity of move on enemy pokemon
+    d *= (Math.random()*0.15)+0.85;
+    // Calculates damage roll of 0.85x to 1x full power
+    return d;
+  }
   public String toString(){
     String moves = "";
     for(String s : moveArray){
@@ -77,5 +105,6 @@ public class Moves{
     }
     return moves;
   }
+  // Returns a list of moves
 }
   
