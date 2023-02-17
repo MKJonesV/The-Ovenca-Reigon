@@ -35,7 +35,8 @@ public class Types{
   }
 
   public String getRandomType(){ // Random Type
-    return types[rand];
+    type1 = types[rand];
+    return type1;
   }
   
   public String getPrimaryType(){ // Returns first type
@@ -56,7 +57,7 @@ public class Types{
     }
     return -1;
   }
-  public double effectivity(Types t){
+  public double effectivity(Types t){ // Calculates effectiveness of moves based on opponents type
     double e = 1;
     e *= effectiveness[num1][t.getType1Val()];
     if(type2 != ""){
