@@ -47,7 +47,7 @@ public class Moves{
         moveArray[1] = pkmMoves[pkmMoves.length-1][atkClass][atkLevel];
       }
       // Move 2
-      if(stats[1]+stats[3] > (bst/3)){
+      if(stats[1]+stats[3] > bst/3){
         moveTypeArray[2] = new Types(type.getRandomType());
         moveArray[2] = pkmMoves[moveTypeArray[2].getType1Val()][atkClass][atkLevel/2];
         movePowerArray[2] = pkmMovePower[moveTypeArray[2].getType1Val()][atkClass][atkLevel/2];
@@ -57,13 +57,13 @@ public class Moves{
           moveArray[2] = pkmMoves[type.getType2Val()][2][0];
           movePowerArray[2] = 0;
         }else{
-          moveTypeArray[1] = new Types("Normal");
+          moveTypeArray[2] = new Types("Normal");
           moveArray[2] = "Detect";
         }
       }else{
-        moveTypeArray[1] = new Types("Normal");
+        moveTypeArray[2] = new Types("Normal");
         moveArray[2] = "Protect";
-        movePowerArray[3] = 0;
+        movePowerArray[2] = 0;
       }
       // Move 3
       moveTypeArray[3] = new Types(type.getPrimaryType());
@@ -71,7 +71,7 @@ public class Moves{
       movePowerArray[3] = 0;
       // Move 4
   }
-  public int damage(String m, Types p1, Types p2){
+  public int damage(String m, Pokemon p1, Pokemon p2){
     int d = 0;
     int index = -1;
     for(int i = 0; i < moveArray.length; i++){
@@ -82,17 +82,19 @@ public class Moves{
     }
     // Sets damage based on move selected
     if(atkClass == 0){
-      d *= (stats[1]*0.01);
+      d *= p1.getStats()[1];
+      d /= p2.getStats()[2];
     }
     if(atkClass == 1){
-      d *= (stats[3]*0.01);
+      d *= p1.getStats()[3];
+      d /= p2.getStats()[4];
     }
     // Increases damage based on attack class
-    if((d != 0) && (moveTypeArray[index].getPrimaryType().equals(p1.getPrimaryType()) || moveTypeArray[index].getSecondaryType().equals(p1.getSecondaryType()))){
+    if((d != 0) && (moveTypeArray[index].getPrimaryType().equals(p1.getType().getPrimaryType()) || moveTypeArray[index].getSecondaryType().equals(p1.getType().getSecondaryType()))){
       d *= 2;
     }
     // Increases damage if move is STAB (Same Type Attack Bonus)
-    d *= moveTypeArray[index].effectivity(p2);
+    d *= moveTypeArray[index].effectivity(p2.getType());
     // Calculates effectivity of move on enemy pokemon
     d *= (Math.random()*0.15)+0.85;
     // Calculates damage roll of 0.85x to 1x full power
@@ -100,11 +102,31 @@ public class Moves{
   }
   public String toString(){
     String moves = "";
-    for(String s : moveArray){
-      moves += s + ", ";
+    char atkSymbol = '-';
+    for(int i = 0; i < moveArray.length; i++){
+      moves += moveArray[i] + ", ";
     }
     return moves;
   }
-  // Returns a list of moves
+  // Returns a basic list of moves
+  
+  public String accurateToString(){
+    String moves = "";
+    String c = "";
+    for(int i = 0; i < moveArray.length; i++){
+      if(movePowerArray[i] != 0 && atkClass == 0){
+        c = "Physical Attack";
+      }
+      if(movePowerArray[i] != 0 && atkClass == 1){
+        c = "Special Attack";
+      }
+      if(movePowerArray[i] == 0){
+        c = "Status Move";
+      }
+      moves += moveArray[i] + " (" + moveTypeArray[i].getPrimaryType() + " Type " + c + ")" + ", ";
+    }
+    return moves;
+  }
+  // Returns a list of moves including move type and move class
 }
   
