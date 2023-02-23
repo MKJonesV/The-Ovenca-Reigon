@@ -1,11 +1,12 @@
 public class Pokemon{
 
-  private int dexNum;
   private String entry;
   private String pkm;
-  private int bst;
-  Types t;
-  Moves m;
+  public int bst;
+  public int dexNum;
+  public int[] stats;
+  Types type;
+  Moves moveset;
   
   public String[] pokedex = {".", "Budloom. The Blooming Flower Pokemon", "Leafalin. The Growing Leaf Pokemon", "Lumitree. The Sun Tree Pokemon", "Komoflare. The Fiery Reptile Pokemon", "Infernodo. The Burning Lizard Pokemon", "Pyrenin. The Poisonous Flame Pokemon", "Surfaling. The Surf Pokemon", "Seawynd. The Flying Fish Pokemon", "Aerocean. The Soaring Waters Pokemon", "Simiaru. The Small Monkey Pokemon", "Lemunazta. The Aztec Lemur Pokemon", "Cumulair. The Fluffy Cloud Pokemon", "Stratiglide. The Stratus Cloud Pokemon", "Cirrice. The Ice Crystal Pokemon", "Nimboom. The Electrostatic Pokemon", "Firean. The Fireball Pokemon", "Lavablast. The Flowing Lava Pokemon", "Vulcanior. The Stratovolcanic Pokemon", "Smokarian. The Shifting Smoke Pokemon", "Redubug. The Stalking Bug Pokemon", "Jabeetle. The Sharp Beetle Pokemon", "Assasant. The Assasin Ant Pokemon", "Deskai. The Shade Pokemon", "Destoble. The Shadow Dweller Pokemon", "Kusode. The Sapling Pokemon", "Timberra. The Tree Root Pokemon", "Barnapool. The Barnacle Pokemon", "Nephraqua. The Colorful Lobster Pokemon", "Blazap. The Burning Spark Pokemon", "Flarectric. The Electrocution Pokemon", "Arrosion. The Poison Arrow Pokemon", "Arorock. The Obsidian Arrowhead Pokemon", "Refractan. The Refraction Pokemon", "Prisma. The Prism Pokemon", "Dustairy. The Magic Powder Pokemon", "Majesthorn. The Healing Unicorn Pokemon", "Polliair. The Pollen Transfer Pokemon", "Lilacaura. The Lilac Pokemon", "Gekakai. The Terra Firma Pokemon", "Quakeo. The Techtonic Pokemon", "Spearswim. The Swordfish Pokemon", "Marlinity. The Marlin Pokemon", "Forrime. The Tree Rime Pokemon", "Arctane. The Ice Pillar Pokemon", "Vidilaze. The Glaze Ice Pokemon", "Abykal. The Frozen Lake Pokemon", "Tijauego. The Firewalker Pokemon", "Perizen. The Firescales Pokemon", "Prilibre. The Libre Pokemon", "Mataflect. The Matador Pokemon", "Paravia. The Parakeet Pokemon", "Conuair. The Conure Pokemon", "Tropicaw. The Macaw Pokemon", "Neonadai. The Snake Hatchling Pokemon", "Anadrai. The Juvenille Serpent Pokemon", "Anacondroi. The Anaconda Pokemon", "Depredosa. The Predator Pokemon", "Cazaturnal. The Night Tracker Pokemon", "Foosaken. The Foosa Pokemon", "Wispis. The Small Wisp Pokemon", "Wispolon. The Eidolon Pokemon", "Wraithiant. The Glowing Wraith Pokemon", "Otonium. The Soft Landing Pokemon", "Janvity. The High Jump Pokemon", "Gravitrus. The Gravity Pokemon", "Stonefall. The Loose Rock Pokemon", "Geotavis. The Flying Geode Pokemon", "Quartzel. The Quartz Quetzal Pokemon", "Bronzing. The Bronze Alloy Pokemon", "Silvrain. The Silver Metal Pokemon", "Goldore. The Gold Nugget Pokemon", "Platinel. The Platinum Ingot Pokemon", "Ovencan Feebass. The Fish Pokemon", "Ovencan Milotic. The Tender Pokemon", "Eeliquent. The Psychic Eel Pokemon", "Ovencan Hoppip. The Cottonweed Pokemon", "Ovencan Skiploom. The Cottonweed Pokemon", "Ovencan Jumpluff. The Cotton Pokemon", "Ovencan Zangoose. The Ferret Pokemon", "Wezadreja. The Strong Weasel Pokemon", "Ovencan Seviper. The Fang Snake Pokemon", "Cobriente. The Toxic Cobra Pokemon", "Ovencan Castform. The Weather Pokemon", "Ovencan Phanpy. The Long Nose Pokemon", "Ovencan Donphan. The Armored Pokemon", "Neumaphant. The Steel Elephant Pokemon", "Ovencan Sneasel. The Sharp Claw Pokemon", "Ovencan Weaville. The Sharp Claw Pokemon", "Crystalyne. The Crystal Pokemon", "Pythamo. The Camouflage Snake Pokemon", "Geysearin. The Hot Water Pokemon", "Nuclecid. The Nuclear Waste Pokemon", "Scarobian. The Scarab Beetle Pokemon", "Bismuthal. The Rainbow Rock Pokemon", "Eclipsus. The Moon Shadow Pokemon", "Mythicon. The Mythic Creature Pokemon", "Scaleon. The Tough Scales Pokemon", "Lustreon. The Bright Lights Pokemon", "Swirlseed. The Seed Sprout Pokemon", "Willowind. The Windblown Tree Pokemon", "Petramoss. The Petrified Moss Pokemon", "Cypriu. The Cypress Tree Pokemon", "Mysteerie. The Mysterious Pokemon", "Coraria. The Reef Pokemon", "Torokari. The Shining Jungle Pokemon", "Dunsetchi. The Sandworm Pokemon", "Raydol. The Changing Light Pokemon", "Shimmrain. The Shimmering Water Pokemon", "Clorophis. The Chlorophyll Pokemon", "Infraray. The Long Wavelength Pokemon", "Glarox. The Albedo Pokemon", "Illumilight. The Filament Pokemon", "Shadeluge. The Blackout Pokemon", "Wavera. The Wave Pokemon", "Aquarrent. The Current Pokemon", "Tidation. The Tidal Wave Pokemon", "Singulariton. The Black Hole Pokemon", "Mariglow. The Aqua Gem Pokemon ", "Emeraleaf. The Forest Gem Pokemon", "Rubignite. The Flame Gem Pokemon", "Megalachomp. The Aincent Shark Pokemon", "Sarcavian. The Aincent Crocodile Pokemon", "Titanithon. The Aincent Snake Pokemon", "Cycazoic. The Cycad Pokemon", "Jaguyote. The Chupacabra Pokemon"};
   public String[] pkmTypes = {"???", "Grass", "Grass", "Grass/Light", "Fire", "Fire/Poison", "Fire/Poison", "Water", "Water/Flying", "Water/Flying", "Normal", "Normal/Grass", "Flying/Normal", "Flying", "Flying/Ice", "Flying/Electric", "Fire", "Fire", "Fire/Ground", "Fire/Flying", "Bug", "Bug", "Bug/Dark", "Dark", "Dark/Normal", "Grass", "Grass/Ground", "Water", "Water/Bug", "Electric/Fire", "Electric/Fire", "Steel/Poison", "Rock", "Light", "Light/Water", "Fairy", "Fairy/Light", "Fairy", "Grass/Fairy", "Ground", "Ground/Psychic", "Water/Steel", "Water", "Ice/Grass", "Ice/Steel","Ice", "Water/Ice", "Fire", "Fire/Dragon", "Fighting", "Fighting", "Flying", "Grass/Flying", "Grass/Flying", "Fighting", "Fighting", "Fighting/Water", "Normal", "Normal", "Normal", "Ghost", "Ghost", "Ghost/Light", "Psychic/Flying", "Psychic", "Psychic", "Rock", "Rock/Flying", "Rock/Light", "Steel", "Steel", "Steel/Light", "Steel/Dark", "Water", "Water/Electric", "Psychic/Electric", "Grass", "Fire/Grass", "Fire/Grass", "Normal/Fighting", "Fighting", "Water/Poison", "Poison", "Normal", "Grass", "Grass/Steel", "Steel", "Light/Ice", "Light/Ice", "Light", "Grass/Dark", "Fire/Water", "Poison/Steel", "Ghost/Bug", "Rock/Fairy", "Light/Dark", "Dragon/Ghost", "Dragon", "Light", "Grass", "Grass/Flying", "Grass/Rock", "Grass/Water", "Dark/Ghost", "Water/Rock", "Grass/Light", "Normal/Ground", "Light", "Water/Light", "Grass/Light", "Fire/Light", "Ice/Light", "Electric/Light", "Dark/Electric", "Water", "Water/Dragon", "Water/Dragon", "Dark/Light", "Light/Water", "Light/Grass", "Light/Fire", "Water/Fighting", "Dark/Rock", "Water/Dark", "Grass", "Dark/Fighting"};
@@ -17,14 +18,12 @@ public class Pokemon{
     entry = "";
   }
     
-  public Pokemon(String var){
+  public Pokemon(String var){ // Creates pokemon, initializes Stats, Type, and Moveset
     if (var.charAt(0) == '#'){
       dexNum = Integer.parseInt(var.substring(1));
       pkm = pokedex[dexNum].substring(0, pokedex[dexNum].indexOf("."));
-      t = new Types(pkmTypes[dexNum]);
-      for(int j = 0; j < 6; j++){
-        bst += pkmStats[dexNum][j];
-      }
+      type = new Types(pkmTypes[dexNum]);
+      stats = pkmStats[dexNum];
     } else {
       pkm = var;
       for(int i = 0; i < pokedex.length; i++){
@@ -32,25 +31,34 @@ public class Pokemon{
         dexNum = i;
         }
       }
-      for(int j = 0; j < 6; j++){
-        bst += pkmStats[dexNum][j];
-      }
+      stats = pkmStats[dexNum];
     }
-    t = new Types(pkmTypes[dexNum]);
-    m = new Moves(pkmStats[dexNum], t);
+    for(int s : stats){
+      bst += s;
+    }
+    type = new Types(dexNum);
+    moveset = new Moves(dexNum);
+  }
+
+  public Pokemon(int num){ // used for super() method in subclasses
+    dexNum = num;
+    stats = pkmStats[dexNum];
+    for(int s : stats){
+      bst += s;
+    }
   }
   
   public String dexEntry(){
     if (dexNum > 0 && pkm != ""){
       return "Entry "+dexNum+": "+pkm+"\nType: "+pkmTypes[dexNum];
     } else {
-      return "No Entry Found";
+      return "No Entry Found \n";
     }
   }
 
-  public String stats(){
+  public String stats(){ // Returns a list of this Pokemon's Stats
     String s = "(BST: "+bst+", ";
-    int stat = pkmStats[dexNum][0];
+    int stat = stats[0];
     s += "HP: "+stat+", ";
     stat = pkmStats[dexNum][1];
     s += "ATK: "+stat+", ";
@@ -65,17 +73,17 @@ public class Pokemon{
     return s;
   }
   
-  public String typeSearch(String type){
+  public String typeSearch(String targetType){ // Used for multiSearch algorithm in main
     String t;
     for(int i = 1; i < pkmTypes.length-1; i++){
        t = pkmTypes[i];
        pkm = pokedex[i];
-       if(t.equalsIgnoreCase(type)){
+       if(t.equalsIgnoreCase(targetType)){
           entry += pkm.substring(0, pkm.indexOf(".")) + ", ";
        } else if(t.indexOf("/") != -1){
-           if(t.substring(0, t.indexOf("/")).equalsIgnoreCase(type)){
+           if(t.substring(0, t.indexOf("/")).equalsIgnoreCase(targetType)){
              entry += pkm.substring(0, pkm.indexOf(".")) + ", ";
-           } else if(t.substring(t.indexOf("/")+1).equalsIgnoreCase(type)){
+           } else if(t.substring(t.indexOf("/")+1).equalsIgnoreCase(targetType)){
              entry += pkm.substring(0, pkm.indexOf(".")) + ", ";
            } 
        }
@@ -83,7 +91,7 @@ public class Pokemon{
     return "All "+ type + " type pokemon: " + entry + "\n";
   }
   
-  public String statSearch(String s, int x){
+  public String statSearch(String s, int x){ // Used for multiSearch algorithm in main
     int stat = 0;
     int val = 0;
     if(s.equalsIgnoreCase("HP")){
@@ -100,7 +108,7 @@ public class Pokemon{
       stat = 5;
     }
     for(int i = 1; i < pokedex.length-1; i++){
-      val = pkmStats[i][stat];
+      val = stats[stat];
       pkm = pokedex[i];
       if(val >= x){
         entry += pkm.substring(0, pkm.indexOf(".")) + ", ";
@@ -109,29 +117,34 @@ public class Pokemon{
     return "All pokemon with more than "+ x +" "+ s +": "+ entry +"\n";
  }
   
-  public String toString(){
-    return pkm;
+  public String toString(){ // Returns the name of the pokemon, or MissingNo if not found in the pokedex
+    for(int i = 0; i < pokedex.length; i++){
+      if(pokedex[i].substring(0, pokedex[i].indexOf(".")).equalsIgnoreCase(pkm)){
+        return pkm;
+      }
+    }
+    return "MissingNo";
   }
-  public Types getType(){
-    return t;
-  }
-  public int getDamage(String move, Pokemon a, Pokemon b){
-    return m.damage(move, a, b);
-  }
-  public int dexNumber(){
+  public Types getType(){ // Returns the type of this pokemon
+    return type;
+  } 
+  public int dexNumber(){ // Returns the pokedex number of this pokemon
     return dexNum;
   }
   public int[] getStats(){
-    return pkmStats[dexNum];
+    return stats;
   }
-  public void setMoves(){
-    m.addMoves();
+  public int getMoveType(String s){
+    return moveset.moveType(s);
   }
   public String getMoves(int x){
     if(x == 0){
-      return m.toString();
+      return moveset.toString();
     }
-    return m.accurateToString();
+    return moveset.accurateToString();
+  }
+  public int getDamage(String move, Pokemon a, Pokemon b){ // Returns the total damage of the move selected
+    return moveset.damage(move, a, b);
   }
 }
 
