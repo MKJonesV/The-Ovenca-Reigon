@@ -1,15 +1,14 @@
-public class Types{
+public class Types extends Pokemon{
   
   private String type1;
   private String type2;
   private int num1;
   private int num2;
-  private int rand = (int)(Math.random()*20);
   
   public String[] types = {"Normal", "Grass", "Fire", "Water", "Electric", "Bug", "Fighting", "Psychic", "Dark", "Rock", "Ground", "Steel", "Poison", "Flying", "Ghost", "Ice", "Fairy", "Dragon", "Light"};
   public double[][] effectiveness = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 1, 0.5, 1, 1, 0, 1, 1, 1, 1}, {1, 0.5, 0.5, 2, 1, 0.5, 1, 1, 1, 2, 2, 0.5, 0.5, 0.5, 1, 1, 1, 0.5, 2}, {1, 2, 0.5, 0.5, 1, 2, 1, 1, 1, 0.5, 1, 2, 1, 1, 1, 2, 1, 0.5, 0.5}, {1, 0.5, 2, 0.5, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 0.5, 2}, {1, 0.5, 1, 2, 0.5, 1, 1, 1, 1, 1, 0, 1, 1, 2, 1, 1, 1, 0.5, 0.5}, {1, 2, 0.5, 1, 1, 0.5, 2, 2, 1, 1, 0.5, 0.5, 0.5, 1, 1, 0.5, 1, 0.5}, {2, 1, 1, 1, 1, 0.5, 1, 0.5, 2, 2, 1, 2, 0.5, 0.5, 0, 2, 0.5, 1, 1}, {1, 1, 1, 1, 1, 1, 2, 0.5, 0, 1, 1, 0.5, 2, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 0.5, 2, 0.5, 1, 1, 1, 1, 1, 2, 1, 0.5, 1, 0}, {1, 1, 2, 1, 1, 2, 0.5, 1, 1, 1, 0.5, 0.5, 1, 2, 1, 2, 1, 1, 1}, {1, 0.5, 2, 1, 2, 0.5, 1, 1, 1, 2, 1, 2, 2, 0, 1, 1, 1, 1, 1}, {1, 1, 0.5, 0.5, 0.5, 1, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 2, 2, 1, 2}, {1, 2, 1, 1, 1, 1, 1, 1, 1, 0.5, 0.5, 0, 0.5, 1, 0.5, 1, 2, 1, 1}, {1, 1, 1, 2, 0.5, 2, 2, 1, 1, 0.5, 1, 0.5, 1, 1, 1, 1, 1, 1, 1}, {0, 1, 1, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0.5}, {1, 2, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 2, 0.5, 1, 2, 1, 0.5, 1, 2, 2}, {1, 1, 0.5, 1, 1, 1, 2, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 1, 2, 0.5}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 1, 0, 2, 1}, {1, 0.5, 0.5, 0.5, 0.5, 2, 1, 1, 2, 1, 1, 0.5, 1, 2, 2, 0.5, 2, 2, 1}};
   
-  public Types(String pkmType){ // Pokemon
+  public Types(String pkmType){ // Moves
     String comparator;
     if(pkmType.indexOf("/") > -1){
       type1 = pkmType.substring(0, pkmType.indexOf("/"));
@@ -29,13 +28,27 @@ public class Types{
     // Sets the type(s) of the pokemon by index according to the array
   }
   
-  public Types(int pkmTypeIndex){ // Moves
-    num1 = pkmTypeIndex;
-    type1 = types[pkmTypeIndex];
+  public Types(int d){ // Pokemon
+    super(d);
+    String comparator;
+    if(pkmTypes[dexNum].indexOf("/") > -1){
+      type1 = pkmTypes[dexNum].substring(0, pkmTypes[dexNum].indexOf("/"));
+      type2 = pkmTypes[dexNum].substring(pkmTypes[dexNum].indexOf("/")+1);
+    } else {
+      type1 = pkmTypes[dexNum];
+      type2 = "";
+    }
+    for(int i = 0; i < types.length; i++){
+      comparator = types[i];
+      if(comparator.equals(type1))
+        num1 = i;
+      if(comparator.equals(type2))
+        num2 = i;
+    }
   }
 
   public String getRandomType(){ // Random Type
-    type1 = types[rand];
+    type1 = types[(dexNum+1)%20];
     return type1;
   }
   
