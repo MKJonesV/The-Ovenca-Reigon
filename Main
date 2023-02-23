@@ -7,9 +7,9 @@ public class Main {
     s.nextLine();
     ArrayList<Pokemon> team1 = makeTeam(s, "Player 1");
     ArrayList<Pokemon> team2 = makeTeam(s, "Player 2");
-    BattleSim battle = new BattleSim(team1, team2);
-    battle.choosePokemon();
-    battle.chooseMoves();
+    BattleSim b = new BattleSim(team1, team2);
+    b.chooseFirstPokemon();
+    b.battle();
   }
 
   public static void SearchPokedex(Scanner s){
@@ -38,16 +38,20 @@ public class Main {
           System.out.println(player+"'s team: "+str+"\n");
           return team;
         }else{
+          System.out.println("You must have at least one pokemon to battle!");
           name = "n";
         }
       }
       if(name.equals("p")){
         SearchPokedex(s);
-      }else if(!name.equals("n")){
-        str += name + ", ";
+      }else if(!name.equals("n")){  
         Pokemon pkm = new Pokemon(name);
-        team.add(pkm);
-        pkm.setMoves();
+        if(!pkm.toString().equals("MissingNo")){
+           str += name + ", ";
+           team.add(pkm);
+        } else {
+          System.out.println("That Pokemon Does Not Exist. Please Pick Again");
+        }
       }
     }
     System.out.println(player+"'s team: "+str+"\n");
@@ -64,7 +68,6 @@ public class Main {
     Pokemon p1 = new Pokemon(pkmCond);    
     System.out.print("\n"+p1.dexEntry());
     if(p1.dexNumber() > 0){
-      p1.setMoves();
       System.out.println("\nStats: "+p1.stats()+"\nMoves: "+p1.getMoves(0)+"\n");
     }
   }
