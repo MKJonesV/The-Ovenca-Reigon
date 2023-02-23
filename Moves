@@ -1,4 +1,4 @@
-public class Moves{
+public class Moves extends Pokemon{
   
   private String[][][] pkmMoves = {{{"Cut", "Body Slam", "Double Edge*"}, {"Echoed Voice", "Hyper Voice", "Boomburst"}, {"Metronome"}}, {{"Leafage", "Petal Blizzard", "Leaf Blade"}, {"Leaf Tornado", "Energy Ball", "Mega Drain**"}, {"Synthesis"}}, {{"Flame Charge", "Blaze Kick", "Flare Blitz*"}, {"Fire Spin", "Flamethrower", "Fire Blast"}, {"Will-O-Wisp"}}, {{"Aqua Jet", "Waterfall", "Liquidation"}, {"Bubble Beam", "Surf", "Hydro Pump"}, {"Aqua Ring"}}, {{"Nuzzle", "Thunder Punch", "Wild Charge*"}, {"Charge Beam", "Thunderbolt", "Thunder"}, {"Thunder Wave"}}, {{"Pounce", "Leech Life**", "Megahorn*"}, {"Infestation", "Silver Wind", "Bug Buzz"}, {"Tail Glow"}}, {{"Karate Chop", "Drain Punch**", "High Jump Kick*"}, {"Vacuum Wave", "Aura Sphere", "Focus Blast"}, {"Bulk Up"}}, {{"Heart Stamp", "Psycho Cut", "Zen Headbutt"}, {"Confusion", "Psyshock", "Psychic"}, {"Calm Mind"}}, {{"Pursuit", "Night Slash", "Foul Play"}, {"Snarl", "Dark Pulse", "Firey Wrath"}, {"Nasty Plot"}}, {{"Rock Throw", "Rock Slide", "Stone Edge"}, {"Aincent Power", "Power Gem", "Meteor Beam*"}, {"Rock Polish"}}, {{"Bulldoze", "Drill Run", "Earthquake"}, {"Mud Shot", "Scorching Sands", "Earth Power"}, {"Shore Up"}}, {{"Metal Claw", "Iron Head", "Meteor Mash"}, {"Mirror Shot", "Flash Cannon", "Steel Beam"}, {"Automize"}}, {{"Poison Tail", "Cross Poison", "Poison Jab"}, {"Acid", "Venoshock", "Sludge Wave"}, {"Toxic"}}, {{"Peck", "Aerial Ace", "Brave Bird*"}, {"Gust", "Air Slash", "Tempest Tornado"}, {"Roost"}}, {{"Astonish", "Shadow Claw", "Phantom Force"}, {"Night Shade", "Ominous Wind", "Shadow Ball"}, {"Confuse Ray"}}, {{"Ice Shard", "Ice Punch", "Icicle Crash"}, {"Powder Snow", "Ice Beam", "Blizzard"}, {"Aurora Veil"}}, {{"Draining Kiss**", "Magic Touch", "Play Rough"}, {"Disarming Voice", "Dazzling Gleam", "Moonblast"}, {"Moonlight"}}, {{"Breaking Swipe", "Dragon Claw", "Dragon Rush"}, {"Twister", "Dragon Pulse", "Draco Meteor*"}, {"Dragon Dance"}}, {{"Daze", "Shining Kick", "Light Slash"}, {"Flashbang", "Light Pulse", "Supernova*"}, {"Light Screen", "Reflect"}}, {{"Feint", "Facade", "Giga Impact***"}, {"Hidden Power", "Razor Wind", "Hyper Beam***"}, {""}}};
   private int[][][] pkmMovePower = {{{50, 85, 120}, {40, 90, 110}}, {{40, 90, 95}, {60, 90, 75}}, {{40, 80, 90}, {40, 90, 110}}, {{40, 85, 120}, {35, 90, 110}}, {{30, 75, 90}, {50, 90, 110}}, {{50, 80, 120}, {30, 60, 90}}, {{50, 75, 130}, {40, 80, 110}}, {{60, 70, 85}, {50, 80, 90}}, {{40, 70, 95}, {55, 80, 90}}, {{50, 75, 100}, {60, 80, 130}}, {{60, 80, 100}, {55, 75, 90}}, {{50, 80, 95}, {65, 85, 130}}, {{50, 70, 85}, {40, 65, 95}}, {{35, 80, 120}, {40, 75, 110}}, {{30, 70, 90}, {50, 60, 80}}, {{40, 75, 90}, {40, 90, 110}}, {{50, 70, 90}, {40, 80, 90}}, {{60, 80, 100}, {40, 85, 130}}, {{50, 65, 85}, {40, 60, 120}}, {{30, 70, 150}, {40, 80, 150}}};
@@ -7,19 +7,14 @@ public class Moves{
   private int[] movePowerArray = new int[4];
   private Types[] moveTypeArray = new Types[4];
   
-  private int[] stats;
-  private int bst = 0;
   private int atkClass;
   private int atkLevel;
-  Types type;
+  private Types type;
   
-  public Moves(int[] s, Types t){
-    stats = s;
-    type = t;
-    for(int i = 0; i < s.length; i++){
-      bst += s[i];
-    }
-    if(s[1] > s[3]){
+  public Moves(int d){
+    super(d);
+    type = new Types(dexNum);
+    if(stats[1] > stats[3]){
       atkClass = 0;
     }else{
       atkClass = 1;
@@ -30,7 +25,8 @@ public class Moves{
       atkLevel = 1;
     }else{
       atkLevel = 0;
-    }  
+    }
+    addMoves();
   }
   
   public void addMoves(){
@@ -128,5 +124,17 @@ public class Moves{
     return moves;
   }
   // Returns a list of moves including move type and move class
+  public int moveType(String s){
+    for(int i = 0; i < moveArray.length; i++){
+      if(moveArray[i].equals(s)){
+        if(movePowerArray[i] == 0){
+          return 2;
+        } else {
+          return atkClass;
+        }
+      }
+    }
+    return -1;
+  }
 }
   
