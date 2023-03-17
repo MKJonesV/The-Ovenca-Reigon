@@ -2,14 +2,18 @@ import java.util.*;
   
 public class Main {
   public static void main(String[] args) {
+    System.out.println("\nWelcome to the Ovenca Reigon! We have 125 new Pokemon to discover and battle with, as well as a new type, the Light Type.");
+    System.out.println("In this simulation, you will be able to search the pokedex for pokemon you want on your team, and then use them in battle with another person.\n");  
     Scanner s = new Scanner(System.in);
     SearchPokedex(s);
     s.nextLine();
+    System.out.println("Now you and your opponent will each be building your pokemon team.\n");
     ArrayList<Pokemon> team1 = makeTeam(s, "Player 1");
     ArrayList<Pokemon> team2 = makeTeam(s, "Player 2");
     BattleSim b = new BattleSim(team1, team2);
+    System.out.println("Let The Battle Begin!\n");
     b.chooseFirstPokemon();
-    b.battle();
+    b.battle(1);
   }
 
   public static void SearchPokedex(Scanner s){
@@ -41,10 +45,10 @@ public class Main {
           System.out.println("You must have at least one pokemon to battle!");
           name = "n";
         }
-      }
-      if(name.equals("p")){
+      }else if(name.equals("p")){
         SearchPokedex(s);
-      }else if(!name.equals("n")){  
+        s.nextLine();
+      }else if(!name.equals("n") && !name.equals("p")){  
         Pokemon pkm = new Pokemon(name);
         if(!pkm.toString().equals("MissingNo")){
            str += name + ", ";
@@ -84,10 +88,8 @@ public class Main {
       System.out.println("To find pokemon that specialize in a certian stat, enter a stat category (HP, ATK, DEF, SP ATK, SP DEF, or SPD)");
       s.nextLine();
       String statCond = s.nextLine();
-      System.out.println("Enter the minimum "+statCond+" value you want");
-      int x = s.nextInt();
       Pokemon p3 = new Pokemon();
-      System.out.println(p3.statSearch(statCond, x));
+      System.out.println(p3.statSearch(statCond));
     }
   }
 } 
