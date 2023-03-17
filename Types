@@ -48,7 +48,7 @@ public class Types extends Pokemon{
   }
 
   public String getRandomType(){ // Random Type
-    type1 = types[(dexNum+1)%20];
+    type1 = types[(dexNum+15)%19];
     return type1;
   }
   
@@ -73,9 +73,16 @@ public class Types extends Pokemon{
   public double effectivity(Types t){ // Calculates effectiveness of moves based on opponents type
     double e = 1;
     e *= effectiveness[num1][t.getType1Val()];
-    if(type2 != ""){
-      e *= effectiveness[num1][t.getType2Val()];
+    if(t.getSecondaryType() != ""){
+    e *= effectiveness[num1][t.getType2Val()];
     }
     return e;
+  }
+  public String toString(){
+    if(!type2.equals("")){
+      return type1 + "/" + type2;
+    }else{
+      return type1;
+    }
   }
 }
